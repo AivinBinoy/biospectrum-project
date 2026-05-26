@@ -331,6 +331,73 @@
       border-color: rgba(14, 143, 78, 0.38);
     }
 
+    .inaugural-card {
+  background: radial-gradient(circle at 85% 12%, rgba(255,247,184,.62), transparent 32%),
+              linear-gradient(135deg, #ffffff, var(--cream-light));
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 28px;
+  box-shadow: var(--shadow-soft);
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 28px;
+  align-items: center;
+  min-height: 100%;
+  transition: .32s ease;
+}
+
+.inaugural-card:hover {
+  transform: translateY(-9px) scale(1.01);
+  box-shadow: var(--shadow);
+}
+
+.inaugural-photo {
+  width: 260px;
+  height: 320px;
+  border-radius: 28px;
+  background: #edf6ef;
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+}
+
+.inaugural-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.inaugural-label {
+  color: var(--green);
+  font-size: .76rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .13em;
+}
+
+.inaugural-card h3 {
+  color: var(--green-deep);
+  font-family: "Playfair Display", serif;
+  font-size: clamp(1.9rem, 3vw, 3.2rem);
+  line-height: .95;
+  margin: 10px 0;
+}
+
+.inaugural-card p {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+@media (max-width: 720px) {
+  .inaugural-card {
+    grid-template-columns: 1fr;
+  }
+
+  .inaugural-photo {
+    width: 100%;
+    height: 330px;
+  }
+}
+
     .feature-card::after, .date-card::after, .speaker-card::after, .contact-card::after, .committee-card::after, .schedule-card::after, .info-card::after, .logo-card::after {
       content: "";
       position: absolute;
@@ -352,76 +419,7 @@
     .feature-grid { grid-template-columns:repeat(2,1fr); }
     .icon { width:54px; height:54px; border-radius:18px; display:grid; place-items:center; font-size:1.45rem; background:var(--cream); margin-bottom:16px; }
 
-    .inaugural-card {
-      background: radial-gradient(circle at 85% 12%, rgba(255,247,184,.62), transparent 32%), linear-gradient(135deg, #ffffff, var(--cream-light));
-      border: 1px solid var(--border);
-      border-radius: var(--radius-xl);
-      padding: 28px;
-      box-shadow: var(--shadow-soft);
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 28px;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-      min-height: 100%;
-      transition: .32s ease;
-    }
-
-    .inaugural-card:hover {
-      transform: translateY(-9px) scale(1.01);
-      box-shadow: var(--shadow);
-      border-color: rgba(14, 143, 78, 0.38);
-    }
-
-    .inaugural-photo {
-      width: 260px;
-      height: 320px;
-      border-radius: 28px;
-      background: #edf6ef;
-      border: 1px solid rgba(14,143,78,.16);
-      box-shadow: var(--shadow-soft);
-      overflow: hidden;
-      display: grid;
-      place-items: center;
-      color: rgba(3,53,31,.36);
-      text-align: center;
-      font-size: .74rem;
-      font-weight: 900;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-
-    .inaugural-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .inaugural-card h3 {
-      color: var(--green-deep);
-      font-family: "Playfair Display", serif;
-      font-size: clamp(1.8rem, 3vw, 3.1rem);
-      line-height: .95;
-      letter-spacing: -.055em;
-      margin: 8px 0 10px;
-    }
-
-    .inaugural-card p {
-      color: var(--muted);
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-
-    .inaugural-label {
-      display: inline-flex;
-      color: var(--green);
-      font-size: .76rem;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: .13em;
-      margin-bottom: 6px;
-    }
+    
 
 
     .green-band { background:radial-gradient(circle at 12% 8%, rgba(255,247,184,.2), transparent 28%), linear-gradient(135deg,var(--green-deep),var(--green-dark)); color:white; }
@@ -1563,20 +1561,6 @@
     height: 340px;
   }
 
-  .inaugural-card {
-    grid-template-columns: 1fr;
-  }
-
-  .inaugural-photo {
-    width: 100%;
-    height: 330px;
-  }
-
-  .inaugural-photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
 
   .nav-links {
     max-height: 75vh;
@@ -1703,17 +1687,20 @@
           <div class="section-top"><div><span class="section-kicker">About</span><h2 class="section-title"> The Conference</h2></div><p class="section-desc">Focused. Research-driven. Built for academic excellence and global collaboration.</p></div>
           <div class="about-grid">
             <article class="about-card-main"><p>The International Conference on “Recent Advances in Biological Sciences (Biospectrum 2K26)”, hosted by <strong>Department of Biosciences</strong>, offers a dynamic platform to explore cutting-edge developments across biological sciences. Join us at Mar Athanasios College for Advanced Studies  Tiruvalla (Autonomous), for insightful sessions by renowned experts and an opportunity to present your research.</p><h3>MACFAST</h3><p>Mar Athanasios College For Advanced Studies Tiruvalla (Autonomous) is a prestigious postgraduate research institute affiliated with Mahatma Gandhi University, Kottayam, and approved by AICTE and UGC under section 2(f), New Delhi. The college has been reaccredited with an ‘A+’ Grade by NAAC and is recognized by DSIR. MACFAST is ranked in the 201–300 band by NIRF.</p><p>The college offers postgraduate programmes including Biotechnology, Bioinformatics, Food Technology and Quality Assurance, Computer Applications, Social Work, and Management Studies, along with undergraduate and Ph.D. programmes(BioScience and Management Studies).</p></article>
+            
             <article class="inaugural-card">
-              <div class="inaugural-photo">
-                <img src="speakers/Dr.Binod P.jpg" alt="Dr. A. Biju Kumar">
-              </div>
-              <div>
-                <span class="inaugural-label">Inaugural Address</span>
-                <h3>Dr. A. Biju Kumar</h3>
-                <p><strong>Vice Chancellor, KUFOS</strong></p>
-                <p>Inaugural guest for BioSpectrum 2K26, representing academic leadership and scientific excellence.</p>
-              </div>
-            </article>
+  <div class="inaugural-photo">
+    <img src="speakers/bijukumar.webp" alt="Dr. A. Biju Kumar">
+  </div>
+
+  <div>
+    <span class="inaugural-label">Inaugural Address</span>
+    <h3>Dr. A. Biju Kumar</h3>
+    <p><strong>Vice Chancellor, KUFOS</strong></p>
+    <p>Inaugural guest for BioSpectrum 2K26, representing academic leadership and scientific excellence.</p>
+  </div>
+</article>
+
             <!-- <div class="feature-grid"><article class="feature-card"><a href="#speakers"><div class="icon" >🎤</div><h3>International & National Speakers</h3><p>Inaugural session and keynote address by experts.</p></a></article><article class="feature-card"><div class="icon">📄</div><h3>Guidelines for Paper Presentation</h3><p>Oral presentations by scholars, students, faculty and scientists.</p></article><article class="feature-card"><div class="icon">🏆</div><h3>Guidelines for Poster Presentations</h3><p> poster presentation competitions with awards.</p></article><article class="feature-card"><div class="icon">📚</div><h3>Abstract/Proceedings</h3><p>Abstract and seminar proceedings with ISBN number.</p></article></div>
           </div> -->
         </div></section>
