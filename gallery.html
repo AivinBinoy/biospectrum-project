@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery | Biospectrum 2K26</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --green: #0E8F4E;
+      --green-dark: #064C2B;
+      --green-deep: #03351F;
+      --cream: #FFF7B8;
+      --cream-light: #FFF9CF;
+      --text: #163325;
+      --muted: #617267;
+      --white: #ffffff;
+      --border: rgba(14, 143, 78, 0.18);
+      --shadow: 0 28px 80px rgba(3, 53, 31, 0.18);
+      --shadow-soft: 0 16px 42px rgba(3, 53, 31, 0.10);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background: #ffffff;
+      color: var(--text);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 36px));
+      margin-inline: auto;
+    }
+
+    .announcement {
+      background: var(--green-deep);
+      color: var(--cream);
+      padding: 10px 0;
+      font-size: 0.92rem;
+      font-weight: 800;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .announcement-track {
+      width: max-content;
+      display: flex;
+      gap: 40px;
+      animation: headerMarquee 24s linear infinite;
+    }
+
+    @keyframes headerMarquee {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      border-bottom: 1px solid rgba(14, 143, 78, 0.13);
+      box-shadow: 0 8px 30px rgba(3, 53, 31, 0.10);
+    }
+
+    .nav-inner {
+      min-height: 78px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-mark {
+      width: 150px;
+      height: 80px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .brand-mark img {
+      width: 150px;
+      height: 38px;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 14px rgba(3,53,31,.12));
+    }
+
+    .brand-text strong {
+      display: block;
+      color: var(--green-deep);
+      font-size: 1rem;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+    }
+
+    .brand-text span {
+      display: block;
+      color: rgba(3,53,31,0.68);
+      font-size: 0.68rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .nav-links {
+      justify-self: center;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--green-deep);
+      font-size: 0.88rem;
+      font-weight: 900;
+      background: rgba(232, 241, 235, 0.96);
+      padding: 10px 14px;
+      border-radius: 999px;
+      box-shadow: 0 10px 30px rgba(3,53,31,.15), inset 0 1px 0 rgba(255,255,255,.9);
+      border: 1px solid rgba(14, 143, 78, 0.16);
+    }
+
+    .nav-links a {
+      padding: 9px 15px;
+      border-radius: 999px;
+      transition: 0.25s;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      background: rgba(14, 143, 78, 0.12);
+    }
+
+    .gallery-hero {
+      position: relative;
+      min-height: calc(100vh - 88px);
+      display: grid;
+      align-items: center;
+      padding: 46px 0 54px;
+      color: var(--white);
+      overflow: hidden;
+      background: var(--green-deep);
+    }
+
+    .hero-slider {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transform: scale(1.06);
+      transition: opacity 1.2s ease, transform 5s ease;
+    }
+
+    .hero-slide.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .hero-slide:nth-child(1) {
+      background-image: url("logo/DSC03837.webp");
+    }
+
+    .gallery-hero::before {
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      z-index:1;
+      background:
+        linear-gradient(rgba(0,0,0,0.38), rgba(0,0,0,0.38)),
+        radial-gradient(circle at 14% 18%, rgba(255,247,184,.22), transparent 27%),
+        radial-gradient(circle at 84% 15%, rgba(52,184,106,.24), transparent 25%),
+        linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.45));
+    }
+
+    .gallery-hero::after {
+      content: "GALLERY";
+      position: absolute;
+      left: -22px;
+      bottom: -38px;
+      font-size: clamp(4rem, 16vw, 13rem);
+      font-weight: 900;
+      letter-spacing: -0.08em;
+      color: rgba(255,255,255,.07);
+      line-height: 1;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 880px;
+    }
+
+  
+
+    h1 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(3.4rem, 8vw, 7.8rem);
+      line-height: 0.88;
+      letter-spacing: -0.07em;
+    }
+
+    .hero-content p {
+      margin-top: 22px;
+      max-width: 700px;
+      color: rgba(255,255,255,.84);
+      font-size: 1.08rem;
+      font-weight: 700;
+    }
+
+    section {
+      padding: 88px 0;
+    }
+
+    .section-top {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 34px;
+    }
+
+    .section-kicker {
+      display: inline-flex;
+      color: var(--green);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .13em;
+      font-size: .78rem;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.3rem, 5vw, 4.4rem);
+      line-height: .98;
+      letter-spacing: -.05em;
+      color: var(--green-deep);
+    }
+
+    .section-desc {
+      color: var(--muted);
+      max-width: 560px;
+      font-weight: 700;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-auto-rows: 120px;
+      gap: 18px;
+    }
+
+    .gallery-card {
+      position: relative;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid var(--border);
+      background: var(--cream-light);
+      transition: 0.35s ease;
+    }
+
+    .gallery-card.large {
+      grid-column: span 6;
+      grid-row: span 3;
+    }
+
+    .gallery-card.medium {
+      grid-column: span 4;
+      grid-row: span 3;
+    }
+
+    .gallery-card.small {
+      grid-column: span 3;
+      grid-row: span 2;
+    }
+
+    .gallery-card.wide {
+      grid-column: span 6;
+      grid-row: span 2;
+    }
+
+    .gallery-card.tall {
+      grid-column: span 3;
+      grid-row: span 4;
+    }
+
+    .gallery-card:hover {
+      transform: translateY(-8px) scale(1.01);
+      box-shadow: var(--shadow);
+    }
+
+    .gallery-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      inset: 0;
+      transition: 0.45s ease;
+    }
+
+    .gallery-card:hover img {
+      transform: scale(1.07);
+    }
+
+    .gallery-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 45%, rgba(3,53,31,.78));
+      z-index: 1;
+    }
+
+    .gallery-info {
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      bottom: 18px;
+      z-index: 2;
+      color: white;
+    }
+
+    .gallery-info h3 {
+      font-size: 1.35rem;
+      line-height: 1.15;
+      margin-bottom: 6px;
+      letter-spacing: -0.04em;
+    }
+
+    .gallery-info p {
+      color: rgba(255,255,255,.78);
+      font-weight: 700;
+      font-size: 0.92rem;
+    }
+
+    .green-section {
+      background:
+        radial-gradient(circle at 12% 8%, rgba(255,247,184,.18), transparent 28%),
+        linear-gradient(135deg, var(--green-deep), var(--green-dark));
+      color: white;
+    }
+
+    .green-section .section-title {
+      color: white;
+    }
+
+    .green-section .section-desc {
+      color: rgba(255,255,255,.78);
+    }
+        .back-box {
+      padding: 38px;
+      border-radius: 34px;
+      background: var(--cream-light);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .back-box h2 {
+      font-family: "Playfair Display", serif;
+      color: var(--green-deep);
+      font-size: clamp(2rem, 4vw, 3.8rem);
+      letter-spacing: -0.05em;
+      margin-bottom: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      margin-top: 20px;
+      background: var(--green);
+      color: white;
+      padding: 15px 24px;
+      border-radius: 999px;
+      font-weight: 900;
+      box-shadow: 0 16px 34px rgba(14,143,78,.26);
+      transition: 0.25s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      background: var(--green-dark);
+    }
+
+    footer {
+      background: var(--green-deep);
+      color: rgba(255,255,255,.78);
+      text-align: center;
+      padding: 34px 0;
+    }
+
+    @media (max-width: 980px) {
+      .nav-inner {
+        grid-template-columns: 1fr;
+        padding: 14px 0;
+      }
+
+      .nav-links {
+        justify-self: start;
+        flex-wrap: wrap;
+        border-radius: 24px;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(6, 1fr);
+      }
+
+      .gallery-card.large,
+      .gallery-card.medium,
+      .gallery-card.wide {
+        grid-column: span 6;
+      }
+
+      .gallery-card.small,
+      .gallery-card.tall {
+        grid-column: span 3;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 280px;
+      }
+
+      .gallery-card.large,
+      .gallery-card.medium,
+      .gallery-card.small,
+      .gallery-card.wide,
+      .gallery-card.tall {
+        grid-column: span 1;
+        grid-row: span 1;
+      }
+      
+      .brand-mark {
+        width: 100px;
+      }
+
+      .brand-mark img {
+        width: 100px;
+      }
+    }
+   
+  </style>
+</head>
+
+<body>
+  <div class="announcement">
+    <div class="announcement-track">
+      <span>Biospectrum 2K26 Gallery</span>
+      <span>MACFAST, Tiruvalla</span>
+      <span>Biospectrum 2K26 Gallery</span>
+      <span>MACFAST, Tiruvalla</span>
+      <span>Biospectrum 2K26 Gallery</span>
+      <span>MACFAST, Tiruvalla</span>
+    </div>
+  </div>
+
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-mark">
+          <img src="https://macfast.org/wp-content/uploads/2025/10/logo-autonomous.png" alt="MACFAST Logo">
+        </span>
+        <span class="brand-text">
+          <strong>Biospectrum 2K26</strong>
+          <span>Department of Biosciences, MACFAST</span>
+        </span>
+      </a>
+
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#themes">Themes</a>
+        <a href="index.html#speakers">Speakers</a>
+        <a href="gallery.html" class="active">Gallery</a>
+        <a href="index.html#fees">Fees</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="gallery-hero">
+    <div class="hero-slider" aria-hidden="true">
+      <div class="hero-slide active"></div>
+    </div>
+
+    <div class="container hero-content">
+      
+      <h1>Gallery</h1>
+      <p>
+        A curated visual space showcasing previous BioSpectrum moments, academic activities, campus infrastructure, and the vibrant learning environment of MACFAST.
+      </p>
+    </div>
+  </header>
+
+  <main>
+    <section id="old-biospectrum">
+      <div class="container">
+        <div class="section-top">
+          <div>
+            <span class="section-title ">Biospectrum Archive</span>
+          
+          </div>
+          <p class="section-desc">
+            A curated collection of previous Biospectrum memories, sessions, student moments, and academic interactions.
+          </p>
+        </div>
+
+        <div class="gallery-grid">
+          <article class="gallery-card large">
+            <img src="OLD/WhatsApp Image 2026-05-20 at 10.18.17 AM.webp" alt="Previous Biospectrum event">
+            <div class="gallery-info">
+              <h3>Inaugural Ceremony</h3>
+              <p>Opening moments from previous Biospectrum editions.</p>
+            </div>
+          </article>
+
+          <article class="gallery-card small">
+            <img src="OLD/img4.webp" alt="Previous Biospectrum event">
+          </article>
+
+          <article class="gallery-card small">
+            <img src="OLD/WhatsApp Image 2026-05-20 at 10.25.05 AM.webp" alt="Previous Biospectrum event">
+          </article>
+
+          <article class="gallery-card wide">
+            <img src="OLD/WhatsApp Image 2026-05-20 at 10.21.01 AM.webp" alt="Previous Biospectrum event">
+          </article>
+
+          <article class="gallery-card medium">
+            <img src="OLD/WhatsApp Image 2026-05-20 at 10.19.53 AM.webp" alt="Previous Biospectrum event">
+          </article>
+
+          <article class="gallery-card medium">
+            <img src="OLD/WhatsApp Image 2026-05-20 at 10.24.48 AM.webp" alt="Previous Biospectrum event">
+          </article>
+        </div>
+      </div>
+    </section>
+        <section id="college-gallery" class="green-section">
+      <div class="container">
+        <div class="section-top">
+          <div>
+            <span class="section-kicker">MACFAST Campus</span>
+            <h2 class="section-title">Biodiversity at MACFAST</h2>
+          </div>
+
+          <p class="section-desc">
+            Explore the natural biodiversity, landscapes, flora, fauna and green ecosystem of the MACFAST campus.
+          </p>
+        </div>
+
+        <div class="gallery-grid">
+
+          <article class="gallery-card large">
+            <img src="DJI_0053.webp" alt="MACFAST campus">
+            <div class="gallery-info">
+              <h3>MACFAST Campus</h3>
+              <p>A green and research-oriented academic environment.</p>
+            </div>
+          </article>
+
+          <article class="gallery-card small">
+            <img src="GALLERY/1.webp" alt="Biodiversity image 1">
+          </article>
+
+          <article class="gallery-card small">
+            <img src="GALLERY/2.webp" alt="Biodiversity image 2">
+          </article>
+
+          <article class="gallery-card medium">
+            <img src="GALLERY/3.webp" alt="Biodiversity image 3">
+          </article>
+
+          <article class="gallery-card wide">
+            <img src="GALLERY/4.webp" alt="Biodiversity image 4">
+          </article>
+
+          <article class="gallery-card tall">
+            <img src="GALLERY/5.webp" alt="Biodiversity image 5">
+          </article>
+
+          <article class="gallery-card small">
+            <img src="GALLERY/6.webp" alt="Biodiversity image 6">
+          </article>
+
+          <article class="gallery-card small">
+            <img src="GALLERY/7.webp" alt="Biodiversity image 7">
+          </article>
+
+          <article class="gallery-card medium">
+            <img src="GALLERY/8.webp" alt="Biodiversity image 8">
+          </article>
+
+          <article class="gallery-card wide">
+            <img src="GALLERY/9.webp" alt="Biodiversity image 9">
+          </article>
+
+          <article class="gallery-card small">
+            <img src="GALLERY/10.webp" alt="Biodiversity image 10">
+          </article>
+
+          <article class="gallery-card small">
+            <img src="GALLERY/11.webp" alt="Biodiversity image 11">
+          </article>
+
+          <article class="gallery-card medium">
+            <img src="GALLERY/12.webp" alt="Biodiversity image 12">
+          </article>
+
+          <article class="gallery-card tall">
+            <img src="GALLERY/13.webp" alt="Biodiversity image 13">
+          </article>
+
+          <article class="gallery-card small">
+            <img src="GALLERY/14.webp" alt="Biodiversity image 14">
+          </article>
+
+          <article class="gallery-card small">
+            <img src="GALLERY/15.webp" alt="Biodiversity image 15">
+          </article>
+
+          <article class="gallery-card wide">
+            <img src="GALLERY/16.webp" alt="Biodiversity image 16">
+          </article>
+
+          <article class="gallery-card medium">
+            <img src="GALLERY/17.webp" alt="Biodiversity image 17">
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="back-box">
+          <h2>Ready to be part of Biospectrum 2K26?</h2>
+
+          <p>
+            Explore the main conference page for registration,
+            themes, speakers, fees and contact details.
+          </p>
+
+          <a href="index.html" class="btn">
+            Back to Main Website
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>
+        <strong>Biospectrum 2K26</strong> •
+        Mar Athanasios College For Advanced Studies Tiruvalla (Autonomous)
+      </p>
+
+      <p>
+        Gallery page for conference memories and biodiversity visuals.
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>

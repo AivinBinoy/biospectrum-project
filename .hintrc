@@ -1,0 +1,52 @@
+{
+  "extends": [
+    "development"
+  ],
+  "hints": {
+    "compat-api/css": [
+      "default",
+      {
+        "ignore": [
+          "backdrop-filter",
+          "min-height: auto",
+          "text-wrap",
+          "text-wrap: balance"
+        ]
+      }
+    ],
+    "disown-opener": "off",
+    "no-inline-styles": "off",
+    "css-prefix-order": "off",
+    "compat-api/html": [
+      "default",
+      {
+        "ignore": [
+          "iframe[referrerpolicy=no-referrer-when-downgrade]"
+        ]
+      }
+    ],
+    "axe/text-alternatives": [
+      "default",
+      {
+        "frame-title": "off",
+        "document-title": "off"
+      }
+    ],
+    "axe/language": [
+      "default",
+      {
+        "html-has-lang": "off"
+      }
+    ],
+    "meta-charset-utf-8": "off",
+    "meta-viewport": "off"
+  },
+  "browserslist": [
+    "defaults",
+    "not ie 11",
+    "not and_ff <= 150",
+    "not firefox <= 150",
+    "not ios_saf <= 26.4",
+    "not safari <= 26.4"
+  ]
+}
