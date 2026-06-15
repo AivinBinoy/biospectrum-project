@@ -2271,66 +2271,7 @@
         height: 330px;
       }
     }
-/* FIX ABOUT SECTION CARD LAYOUT */
-.about-grid {
-  align-items: stretch !important;
-}
 
-/* Make keynote card go full row below */
-.keynote-card {
-  grid-column: 1 / -1 !important;
-}
-
-/* Make both cards professional */
-.inaugural-card,
-.keynote-card {
-  display: grid !important;
-  grid-template-columns: 360px 1fr !important;
-  gap: 42px !important;
-  align-items: center !important;
-  min-height: 380px !important;
-  padding: 34px 42px !important;
-}
-
-/* Image size */
-.inaugural-photo {
-  width: 360px !important;
-  height: 340px !important;
-  border-radius: 28px !important;
-  overflow: hidden !important;
-}
-
-.inaugural-photo img {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;
-}
-
-/* Text alignment */
-.inaugural-content h2 {
-  font-size: clamp(2.7rem, 4vw, 4.2rem) !important;
-  line-height: 0.95 !important;
-}
-
-.inaugural-content p {
-  max-width: 560px !important;
-}
-
-/* Mobile */
-@media (max-width: 900px) {
-  .inaugural-card,
-  .keynote-card {
-    grid-template-columns: 1fr !important;
-    text-align: center !important;
-  }
-
-  .inaugural-photo {
-    width: 100% !important;
-    max-width: 360px !important;
-    height: 380px !important;
-    margin: auto !important;
-  }
-}
   </style>
 </head>
 <body>
@@ -2447,13 +2388,13 @@
 
             <article class="inaugural-card keynote-card">
   <div class="inaugural-photo">
-    <img src="coordinators/nandhakumar.jpeg" alt="Prof. Dr. Nandakumar Kalarikkal">
+    <img src="nandakumar-kalarikkal.webp" alt="Prof. Dr. Nandakumar Kalarikkal">
   </div>
 
   <div class="inaugural-content">
     <span class="inaugural-label">Keynote Address</span>
-    <h2>Prof. Dr. Nandakumar Kalarikkal</h2>
-    <p><strong>Professor  SPAP <br>Director  IIUCNN<br></strong>Mahatma Gandhi University</p>
+    <h2>Prof. (Dr.) Nandakumar Kalarikkal</h2>
+    <p><strong>Professor @ SPAP</strong><br>Director @ IIUCNN<br>Mahatma Gandhi University</p>
   </div>
 </article>
 
@@ -2856,11 +2797,6 @@
   </div>
 
   <script>
-
-
-
-
-
     const menuBtn = document.getElementById("menuBtn");
     const navLinks = document.getElementById("navLinks");
     menuBtn.addEventListener("click", () => navLinks.classList.toggle("show"));
@@ -3126,7 +3062,6 @@
         }
       });
     }
-    
 
 
   </script>
